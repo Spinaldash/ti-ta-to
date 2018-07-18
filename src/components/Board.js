@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Square from './Square';
+import {calculateWinner} from '../assets/helpers.js';
 
 class Board extends React.Component {
   constructor(props){
@@ -11,8 +12,11 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    //TODO: Replace X-0 withe emoji
+    //TODO: Replace X-0 with emoji
     const squares = this.state.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
     squares[i] = this.state.p1IsNext ? 'X' : 'O';
     this.setState({
       squares: squares,
@@ -29,8 +33,14 @@ class Board extends React.Component {
   }
 
   render() {
+    const winner = calculateWinner(this.state.squares);
+    let status;
 
-    const status = 'Next player: ' + (this.state.p1IsNext ? 'Player 1' : 'Player 2');
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.p1IsNext ? 'Player 1' : 'Player 2');
+    }
 
     return (
       <div>
