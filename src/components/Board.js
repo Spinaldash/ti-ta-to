@@ -12,7 +12,6 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    //TODO: Replace X-0 with emoji
     const squares = this.state.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
