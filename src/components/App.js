@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import '../assets/App.css';
+import Board from './Board';
 
-class App extends Component {
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="game">
+        <div className="game-board">
+          <Board />
+        </div>
+        <div className="game-info">
+          <div>Status</div>
+          <ol>List</ol>
+        </div>
       </div>
     );
   }
